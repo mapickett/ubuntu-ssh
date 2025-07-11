@@ -1,8 +1,9 @@
-# docker build --rm --no-cache -t myubuntu:latest .
-# docker run --rm -it myubuntu /usr/bin/bash
-# ip address add 10.0.0.2/24 dev eth1
+# syntax=docker/dockerfile:1
 
 FROM ubuntu:latest
+
+LABEL org.opencontainers.image.source=https://github.com/mapickett/ubuntu-ssh
+LABEL org.opencontainers.image.description="Custom ubuntu image running sshd for use with Containerlab"
 
 COPY rootfs /
 
