@@ -7,9 +7,11 @@ LABEL org.opencontainers.image.description="Custom ubuntu image running sshd for
 
 COPY rootfs /
 
-RUN apt-get update \
-    && apt-get install -y openssh-server iproute2 sudo
-    
+RUN apt-get update && \
+    apt-get install -y openssh-server iproute2 sudo iputils-ping traceoute net-tools \
+    dnsutils curl wget iperf3 iftop tcpdump nmap netcat-openbsd && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 RUN mkdir /var/run/sshd
 
 RUN useradd -ms /bin/bash admin \
